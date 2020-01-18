@@ -17,11 +17,14 @@ public class CricketAnalyzer {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             List<IPLBattingCSV> battingCSVList = csvBuilder.getCSVFileList(reader, IPLBattingCSV.class);
             return battingCSVList.size();
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new CricketAnalyzerException(e.getMessage(),
-                    CricketAnalyzerException.ExceptionType.BATTING_CSV_FILE_PATH);
+                    CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM);
         } catch (CSVBuilderException e) {
             throw new CricketAnalyzerException(e.getMessage(), e.type.name());
+        } catch (RuntimeException e) {
+            throw new CricketAnalyzerException(e.getMessage(),
+                    CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA);
         }
     }
 }

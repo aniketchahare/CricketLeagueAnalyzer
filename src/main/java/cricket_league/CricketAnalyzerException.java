@@ -3,7 +3,7 @@ package cricket_league;
 public class CricketAnalyzerException extends Exception {
 
     enum ExceptionType{
-        BATTING_CSV_FILE_PATH
+        IPL_BATTING_FILE_PROBLEM, INCORRECT_FILE_DATA;
     }
 
     ExceptionType type;

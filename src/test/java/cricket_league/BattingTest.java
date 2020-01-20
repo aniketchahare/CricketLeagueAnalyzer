@@ -1,8 +1,11 @@
 package cricket_league;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.util.List;
 
 public class BattingTest {
 
@@ -53,6 +56,18 @@ public class BattingTest {
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_WITH_WRONG_DELIMETER);
         } catch (CricketAnalyzerException e) {
             Assert.assertEquals(CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA, e.type);
+        }
+    }
+
+    @Test
+    public void givenBattingCSVFile_WhenSortedOnAvg_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
+            List<IPLBattingCSV> avgWiseSortedData = cricketAnalyzer.getAvgWiseSortedData();
+            Assert.assertEquals(83.2, avgWiseSortedData.get(0).average, 0);
+        } catch (CricketAnalyzerException e) {
+
         }
     }
 }

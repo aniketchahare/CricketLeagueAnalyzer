@@ -65,6 +65,7 @@ public class BattingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
             List<IPLBattingCSV> avgWiseSortedData = cricketAnalyzer.getAvgWiseSortedData();
+            avgWiseSortedData.forEach(System.out::println);
             Assert.assertEquals(83.2, avgWiseSortedData.get(0).average, 0);
         } catch (CricketAnalyzerException e) {
 
@@ -76,8 +77,8 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IPLBattingCSV> avgWiseSortedData = cricketAnalyzer.getStrikeRateWiseSortedData();
-            Assert.assertEquals(333.33, avgWiseSortedData.get(0).strikeRate, 0);
+            List<IPLBattingCSV> srWiseSortedData = cricketAnalyzer.getStrikeRateWiseSortedData();
+            Assert.assertEquals(333.33, srWiseSortedData.get(0).strikeRate, 0);
         } catch (CricketAnalyzerException e) {
 
         }

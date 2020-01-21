@@ -51,4 +51,14 @@ public class CricketAnalyzer {
 //        }
         return battingCSVList;
     }
+
+    public List<IPLBattingCSV> getBoundaryWiseSortedData() {
+        battingCSVList = battingCSVList.stream()
+                .sorted((data1,data2) -> ((data2.sixes * 6) + (data2.fours *4)) - ((data1.sixes * 6) + (data1.fours *4)))
+                .collect(Collectors.toList());
+//        for (int i=0 ; i < battingCSVList.size() ; i++){
+//            System.out.println(battingCSVList.get(i).fours+" "+battingCSVList.get(i).sixes+" "+battingCSVList.get(i).player);
+//        }
+        return battingCSVList;
+    }
 }

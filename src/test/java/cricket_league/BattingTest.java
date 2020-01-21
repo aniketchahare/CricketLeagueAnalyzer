@@ -70,4 +70,16 @@ public class BattingTest {
 
         }
     }
+
+    @Test
+    public void givenBattingCSVFile_WhenSortedOnSR_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
+            List<IPLBattingCSV> avgWiseSortedData = cricketAnalyzer.getStrikeRateWiseSortedData();
+            Assert.assertEquals(333.33, avgWiseSortedData.get(0).strikeRate, 0);
+        } catch (CricketAnalyzerException e) {
+
+        }
+    }
 }

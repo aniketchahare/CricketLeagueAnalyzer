@@ -1,6 +1,7 @@
 package cricket_league;
 
-import com.google.gson.Gson;
+import BattingDAO.IplLeagueDAO;
+import Sorting.SortMode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -64,9 +65,9 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IPLBattingCSV> avgWiseSortedData = cricketAnalyzer.getAvgWiseSortedData();
-            avgWiseSortedData.forEach(System.out::println);
-            Assert.assertEquals(83.2, avgWiseSortedData.get(0).average, 0);
+            List<IplLeagueDAO> avgWiseSortedData = cricketAnalyzer.getSortedData(SortMode.AVG);
+//            avgWiseSortedData.forEach(System.out::println);
+            Assert.assertEquals("MS Dhoni", avgWiseSortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -77,8 +78,9 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IPLBattingCSV> srWiseSortedData = cricketAnalyzer.getStrikeRateWiseSortedData();
-            Assert.assertEquals(333.33, srWiseSortedData.get(0).strikeRate, 0);
+            List<IplLeagueDAO> srWiseSortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
+//            srWiseSortedData.forEach(System.out::println);
+            Assert.assertEquals("Ishant Sharma", srWiseSortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -89,8 +91,9 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IPLBattingCSV> boundryWiseSortedData = cricketAnalyzer.getBoundaryWiseSortedData();
-            Assert.assertEquals("Andre Russell", boundryWiseSortedData.get(0).player);
+            List<IplLeagueDAO> boundaryWiseSortedData = cricketAnalyzer.getSortedData(SortMode.FOURS_SIXES);
+//            boundaryWiseSortedData.forEach(System.out::println);
+            Assert.assertEquals("Andre Russell", boundaryWiseSortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }

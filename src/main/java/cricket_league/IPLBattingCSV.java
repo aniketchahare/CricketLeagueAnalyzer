@@ -4,6 +4,9 @@ import com.opencsv.bean.CsvBindByName;
 
 public class IPLBattingCSV {
 
+    public IPLBattingCSV() {
+    }
+
     @CsvBindByName(column = "POS", required = true)
     public int pos;
 
@@ -81,5 +84,61 @@ public class IPLBattingCSV {
                 ", fours=" + fours +
                 ", sixes=" + sixes +
                 '}';
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public int getMatch() {
+        return match;
+    }
+
+    public int getInnings() {
+        return innings;
+    }
+
+    public int getNotOut() {
+        return notOut;
+    }
+
+    public int getRuns() {
+        return runs;
+    }
+
+    public String getHighScore() {
+        return highScore;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
+    public int getBallFaced() {
+        return ballFaced;
+    }
+
+    public Double getStrikeRate() {
+        return strikeRate;
+    }
+
+    public int getHundred() {
+        return hundred;
+    }
+
+    public int getFifty() {
+        return fifty;
+    }
+
+    public int getFours() {
+        return fours;
+    }
+
+    public int getSixes() {
+        return sixes;
     }
 }

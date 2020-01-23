@@ -98,4 +98,17 @@ public class BattingTest {
 
         }
     }
+
+    @Test
+    public void givenBattingCSVFile_WhenSortedOnStrikeRate_With6sAnd4s_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
+            List<IplLeagueDAO> srFoursSixesWiseSortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE_FOURS_SIXES);
+//            srFoursSixesWiseSortedData.forEach(System.out::println);
+            Assert.assertEquals("Andre Russell", srFoursSixesWiseSortedData.get(0).player);
+        } catch (CricketAnalyzerException e) {
+
+        }
+    }
 }

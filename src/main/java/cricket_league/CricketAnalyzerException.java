@@ -3,7 +3,7 @@ package cricket_league;
 public class CricketAnalyzerException extends Exception {
 
     enum ExceptionType{
-        IPL_BATTING_FILE_PROBLEM, INCORRECT_FILE_DATA, NO_DATA_FOUND;
+        IPL_FILE_PROBLEM, INCORRECT_FILE_DATA, NO_DATA_FOUND, IPL_BOWLING_FILE_PROBLEM;
     }
 
     ExceptionType type;

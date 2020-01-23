@@ -29,8 +29,9 @@ public class CricketAnalyzer {
             return battingCSVList.size();
         } catch (IOException e) {
             throw new CricketAnalyzerException(e.getMessage(),
-                    CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM);
-        } catch (CSVBuilderException e) {
+                    CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM);
+        }
+        catch (CSVBuilderException e) {
             throw new CricketAnalyzerException(e.getMessage(), e.type.name());
         } catch (RuntimeException e) {
             throw new CricketAnalyzerException(e.getMessage(),

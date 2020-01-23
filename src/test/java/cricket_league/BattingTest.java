@@ -15,6 +15,11 @@ public class BattingTest {
     private static final String WRONG_BATTING_CSV_FILE_TYPE = "/home/admin123/Documents/CricketLeagueAnalyzer/src/test/resources/IPL2019FactsheetMostRuns.txt";
     private static final String BATTING_CSV_FILE_WITH_WRONG_DELIMETER = "./src/test/resources/IPL2019FactsheetMostRunsDelimeter.csv";
 
+    private static final String BOWLING_CSV_FILE_PATH = "/home/admin123/Documents/CricketLeagueAnalyzer/src/test/resources/IPL2019FactsheetMostWkts.csv";
+    private static final String WRONG_BOWLING_CSV_FILE_PATH = "/home/admin123/Documents/CricketLeagueAnalyzer/src/main/resources/IPL2019FactsheetMostWkts.csv";
+    private static final String WRONG_BOWLING_CSV_FILE_TYPE = "/home/admin123/Documents/CricketLeagueAnalyzer/src/test/resources/IPL2019FactsheetMostWkts.txt";
+    private static final String BOWLING_CSV_FILE_WITH_WRONG_DELIMETER = "./src/test/resources/IPL2019FactsheetMostWktsDelimeter.csv";
+
     @Test
     public void givenBattingCSVFile_ShouldReturnCSVFileData() {
         try {
@@ -32,7 +37,7 @@ public class BattingTest {
             expectedException.expect(CricketAnalyzerException.class);
             cricketAnalyzer.loadBattingDataFile(WRONG_BATTING_CSV_FILE_PATH);
         } catch (CricketAnalyzerException e){
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
         }
     }
 
@@ -44,7 +49,7 @@ public class BattingTest {
             expectedException.expect(CricketAnalyzerException.class);
             cricketAnalyzer.loadBattingDataFile(WRONG_BATTING_CSV_FILE_TYPE);
         } catch (CricketAnalyzerException e){
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
         }
     }
 
@@ -59,6 +64,8 @@ public class BattingTest {
             Assert.assertEquals(CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA, e.type);
         }
     }
+
+//    ---------
 
     @Test
     public void givenBattingCSVFile_WhenSortedOnAvg_ShouldReturnSortedResult() {
@@ -118,7 +125,7 @@ public class BattingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVERAGES_STRIKERATE);
-            sortedData.forEach(System.out::println);
+//            sortedData.forEach(System.out::println);
             Assert.assertEquals("MS Dhoni", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
@@ -131,10 +138,57 @@ public class BattingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.RUNS_AVERAGES);
-            sortedData.forEach(System.out::println);
+//            sortedData.forEach(System.out::println);
             Assert.assertEquals("David Warner", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
+        }
+    }
+
+//    ----------
+
+    @Test
+    public void givenBowlingCSVFile_ShouldReturnCSVFileData() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            int numOfRecords = cricketAnalyzer.loadBattingDataFile(BOWLING_CSV_FILE_PATH);
+            Assert.assertEquals(100, numOfRecords);
+        } catch (CricketAnalyzerException e){ }
+    }
+
+    @Test
+    public void givenBowlingCSVFile_WithWrongFilePath_ShouldThrowException() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(CricketAnalyzerException.class);
+            cricketAnalyzer.loadBattingDataFile(WRONG_BOWLING_CSV_FILE_PATH);
+        } catch (CricketAnalyzerException e){
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenBowlingCSVFile_WithWrongFileType_ShouldThrowException() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(CricketAnalyzerException.class);
+            cricketAnalyzer.loadBattingDataFile(WRONG_BOWLING_CSV_FILE_TYPE);
+        } catch (CricketAnalyzerException e){
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenBowlingCSVFile_WithWrongDelimeter_ShouldThrowException() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(CricketAnalyzerException.class);
+            cricketAnalyzer.loadBattingDataFile(BOWLING_CSV_FILE_WITH_WRONG_DELIMETER);
+        } catch (CricketAnalyzerException e) {
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA, e.type);
         }
     }
 }

@@ -124,4 +124,17 @@ public class BattingTest {
 
         }
     }
+
+    @Test
+    public void givenBattingCSVFile_WhenSortedOnMaxRuns_WithAverages_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.RUNS_AVERAGES);
+            sortedData.forEach(System.out::println);
+            Assert.assertEquals("David Warner", sortedData.get(0).player);
+        } catch (CricketAnalyzerException e) {
+
+        }
+    }
 }

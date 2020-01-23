@@ -65,9 +65,9 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IplLeagueDAO> avgWiseSortedData = cricketAnalyzer.getSortedData(SortMode.AVG);
-//            avgWiseSortedData.forEach(System.out::println);
-            Assert.assertEquals("MS Dhoni", avgWiseSortedData.get(0).player);
+            List<IplLeagueDAO> sortedData= cricketAnalyzer.getSortedData(SortMode.AVG);
+//            sortedData.forEach(System.out::println);
+            Assert.assertEquals("MS Dhoni", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -78,9 +78,9 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IplLeagueDAO> srWiseSortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
-//            srWiseSortedData.forEach(System.out::println);
-            Assert.assertEquals("Ishant Sharma", srWiseSortedData.get(0).player);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
+//            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Ishant Sharma", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -91,9 +91,9 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IplLeagueDAO> boundaryWiseSortedData = cricketAnalyzer.getSortedData(SortMode.FOURS_SIXES);
-//            boundaryWiseSortedData.forEach(System.out::println);
-            Assert.assertEquals("Andre Russell", boundaryWiseSortedData.get(0).player);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.FOURS_SIXES);
+//            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Andre Russell", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -104,9 +104,22 @@ public class BattingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
-            List<IplLeagueDAO> srFoursSixesWiseSortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE_FOURS_SIXES);
-//            srFoursSixesWiseSortedData.forEach(System.out::println);
-            Assert.assertEquals("Andre Russell", srFoursSixesWiseSortedData.get(0).player);
+            List<IplLeagueDAO> sortedData= cricketAnalyzer.getSortedData(SortMode.STRIKERATE_FOURS_SIXES);
+//            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Andre Russell", sortedData.get(0).player);
+        } catch (CricketAnalyzerException e) {
+
+        }
+    }
+
+    @Test
+    public void givenBattingCSVFile_WhenSortedOnAverages_WithStrikeRate_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBattingDataFile(BATTING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVERAGES_STRIKERATE);
+            sortedData.forEach(System.out::println);
+            Assert.assertEquals("MS Dhoni", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
         }

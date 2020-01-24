@@ -33,7 +33,7 @@ public class BattingTest {
             expectedException.expect(CricketAnalyzerException.class);
             cricketAnalyzer.loadBattingDataFile(WRONG_BATTING_CSV_FILE_PATH);
         } catch (CricketAnalyzerException e) {
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
         }
     }
 
@@ -45,7 +45,7 @@ public class BattingTest {
             expectedException.expect(CricketAnalyzerException.class);
             cricketAnalyzer.loadBattingDataFile(WRONG_BATTING_CSV_FILE_TYPE);
         } catch (CricketAnalyzerException e) {
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
         }
     }
 

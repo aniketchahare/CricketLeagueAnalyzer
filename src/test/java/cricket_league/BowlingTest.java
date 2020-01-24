@@ -30,7 +30,7 @@ public class BowlingTest {
             expectedException.expect(CricketAnalyzerException.class);
             cricketAnalyzer.loadBowlingDataFile(WRONG_BOWLING_CSV_FILE_PATH);
         } catch (CricketAnalyzerException e){
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BOWLING_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
         }
     }
 
@@ -42,7 +42,7 @@ public class BowlingTest {
             expectedException.expect(CricketAnalyzerException.class);
             cricketAnalyzer.loadBowlingDataFile(WRONG_BOWLING_CSV_FILE_TYPE);
         } catch (CricketAnalyzerException e){
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BOWLING_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
         }
     }
 

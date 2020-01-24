@@ -1,8 +1,12 @@
 package cricket_league;
 
+import BattingDAO.IplLeagueDAO;
+import Sorting.SortMode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.util.List;
 
 public class BowlingTest {
 
@@ -55,6 +59,21 @@ public class BowlingTest {
             cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_WITH_WRONG_DELIMETER);
         } catch (CricketAnalyzerException e) {
             Assert.assertEquals(CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA, e.type);
+        }
+    }
+
+//    -------
+
+    @Test
+    public void givenBowlingCSVFile_WhenSortedOnAvg_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVG);
+            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+        } catch (CricketAnalyzerException e) {
+
         }
     }
 }

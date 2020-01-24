@@ -70,7 +70,7 @@ public class BowlingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVG);
-            sortedData.forEach(System.out::println);
+//            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
@@ -83,7 +83,7 @@ public class BowlingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
-            sortedData.forEach(System.out::println);
+//            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
 
@@ -96,8 +96,21 @@ public class BowlingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.ECONOMY);
-            sortedData.forEach(System.out::println);
+//            sortedData.forEach(System.out::println);
             Assert.assertEquals("Ben Cutting", sortedData.get(0).player);
         } catch (CricketAnalyzerException e){ }
+    }
+
+    @Test
+    public void givenBowlingCSVFile_WhenSortedOnStrikeRate_With5wAnd4w_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE_FIVE_FOUR_WKTS);
+            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+        } catch (CricketAnalyzerException e) {
+
+        }
     }
 }

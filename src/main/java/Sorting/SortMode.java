@@ -6,7 +6,7 @@ public enum SortMode {
     FOURS_SIXES(new SortByFoursSixes()),
     STRIKERATE_FOURS_SIXES(new SortByStrikeRateFoursSixes()),
     AVERAGES_STRIKERATE(new SortByAvgStrikeRate()),
-    RUNS_AVERAGES(new SortByRunsAvgs()), ECONOMY(new SortByEconomy());
+    RUNS_AVERAGES(new SortByRunsAvgs()), ECONOMY(new SortByEconomy()), STRIKERATE_FIVE_FOUR_WKTS(new SortByStrikeRateFiveFourWkts());
 
     public Sorting sortMode;
 

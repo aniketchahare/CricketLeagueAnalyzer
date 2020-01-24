@@ -76,4 +76,17 @@ public class BowlingTest {
 
         }
     }
+
+    @Test
+    public void givenBowlingCSVFile_WhenSortedOnSR_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
+            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+        } catch (CricketAnalyzerException e) {
+
+        }
+    }
 }

@@ -52,18 +52,18 @@ public class IPLBattingCSV {
     public IPLBattingCSV(int position, String player, int match, int inns, int notOut, int runs, String highScore, double avg, int ballFaced, double strikeRate, int hundred, int fifty, int fours, int sixes) {
         this.pos = position;
         this.player = player;
-        this.match = match ;
+        this.match = match;
         this.innings = inns;
         this.notOut = notOut;
-        this.runs = runs ;
-        this.highScore = highScore ;
+        this.runs = runs;
+        this.highScore = highScore;
         this.average = avg;
-        this.ballFaced = ballFaced ;
-        this.strikeRate = strikeRate ;
-        this.hundred = hundred ;
-        this.fifty = fifty ;
+        this.ballFaced = ballFaced;
+        this.strikeRate = strikeRate;
+        this.hundred = hundred;
+        this.fifty = fifty;
         this.fours = fours;
-        this.sixes= sixes;
+        this.sixes = sixes;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class IPLBattingCSV {
         return "IPLBattingCSV{" +
                 "pos=" + pos +
                 ", player='" + player + '\'' +
-                ", match=" + match +
+                ", matches=" + match +
                 ", innings=" + innings +
                 ", notOut=" + notOut +
                 ", runs=" + runs +
@@ -84,61 +84,5 @@ public class IPLBattingCSV {
                 ", fours=" + fours +
                 ", sixes=" + sixes +
                 '}';
-    }
-
-    public int getPos() {
-        return pos;
-    }
-
-    public String getPlayer() {
-        return player;
-    }
-
-    public int getMatch() {
-        return match;
-    }
-
-    public int getInnings() {
-        return innings;
-    }
-
-    public int getNotOut() {
-        return notOut;
-    }
-
-    public int getRuns() {
-        return runs;
-    }
-
-    public String getHighScore() {
-        return highScore;
-    }
-
-    public double getAverage() {
-        return average;
-    }
-
-    public int getBallFaced() {
-        return ballFaced;
-    }
-
-    public Double getStrikeRate() {
-        return strikeRate;
-    }
-
-    public int getHundred() {
-        return hundred;
-    }
-
-    public int getFifty() {
-        return fifty;
-    }
-
-    public int getFours() {
-        return fours;
-    }
-
-    public int getSixes() {
-        return sixes;
     }
 }

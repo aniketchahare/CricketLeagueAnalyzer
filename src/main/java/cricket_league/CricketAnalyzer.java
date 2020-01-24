@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 public class CricketAnalyzer {
-    public List<IplLeagueDAO> battingCSVList = new ArrayList<>();
+    public List<IplLeagueDAO> csvList = new ArrayList<>();
 
     public int loadBattingDataFile(String csvFilePath) throws CricketAnalyzerException {
         try {
@@ -25,11 +25,31 @@ public class CricketAnalyzer {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator csvFileIterator = csvBuilder.getCSVFileIterator(reader, IPLBattingCSV.class);
             Iterable<IPLBattingCSV> iterable = () -> csvFileIterator;
-            StreamSupport.stream(iterable.spliterator(), false).forEach(data -> battingCSVList.add(new IplLeagueDAO(data)));
-            return battingCSVList.size();
+            StreamSupport.stream(iterable.spliterator(), false).forEach(data -> csvList.add(new IplLeagueDAO(data)));
+            return csvList.size();
         } catch (IOException e) {
             throw new CricketAnalyzerException(e.getMessage(),
-                    CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM);
+                    CricketAnalyzerException.ExceptionType.IPL_BATTING_FILE_PROBLEM);
+        }
+        catch (CSVBuilderException e) {
+            throw new CricketAnalyzerException(e.getMessage(), e.type.name());
+        } catch (RuntimeException e) {
+            throw new CricketAnalyzerException(e.getMessage(),
+                    CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA);
+        }
+    }
+
+    public int loadBowlingDataFile(String csvFilePath) throws CricketAnalyzerException {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            Iterator csvFileIterator = csvBuilder.getCSVFileIterator(reader, IPLBowlingCSV.class);
+            Iterable<IPLBowlingCSV> iterable = () -> csvFileIterator;
+            StreamSupport.stream(iterable.spliterator(), false).forEach(data -> csvList.add(new IplLeagueDAO(data)));
+            return csvList.size();
+        } catch (IOException e) {
+            throw new CricketAnalyzerException(e.getMessage(),
+                    CricketAnalyzerException.ExceptionType.IPL_BOWLING_FILE_PROBLEM);
         }
         catch (CSVBuilderException e) {
             throw new CricketAnalyzerException(e.getMessage(), e.type.name());
@@ -41,6 +61,6 @@ public class CricketAnalyzer {
 
     public List<IplLeagueDAO> getSortedData(SortMode sortMode) {
         Sorting sorting = sortMode.sortMode;
-        return sorting.getSort(this.battingCSVList);
+        return sorting.getSort(this.csvList);
     }
 }

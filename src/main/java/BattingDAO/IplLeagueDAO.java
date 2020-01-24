@@ -1,22 +1,30 @@
 package BattingDAO;
 
 import cricket_league.IPLBattingCSV;
+import cricket_league.IPLBowlingCSV;
 
 public class IplLeagueDAO {
     public int position;
     public String player;
-    public int match;
+    public int matches;
     public int inns;
     public int notOut;
     public int runs;
     public String highScore;
-    public double avg;
+    public Double avg;
     public int ballFaced;
-    public double strikeRate;
+    public Double strikeRate;
     public int hundred;
     public int fifty;
     public int fours;
     public int sixes;
+
+    public Double over;
+    public int wickets;
+    public int bbi;
+    public Double econ;
+    public int fourWickets;
+    public int fiveWickets;
 
     public IplLeagueDAO() {
     }
@@ -24,7 +32,7 @@ public class IplLeagueDAO {
     public IplLeagueDAO(IPLBattingCSV iplBattingCSV) {
         position = iplBattingCSV.pos;
         player = iplBattingCSV.player;
-        match = iplBattingCSV.match;
+        matches = iplBattingCSV.match;
         inns = iplBattingCSV.innings;
         notOut = iplBattingCSV.notOut;
         runs = iplBattingCSV.runs;
@@ -38,12 +46,27 @@ public class IplLeagueDAO {
         sixes = iplBattingCSV.sixes;
     }
 
-    public IPLBattingCSV getIplDto(){
-        return new IPLBattingCSV (position ,
-        player ,match ,inns ,notOut ,runs, highScore ,avg, ballFaced,
-        strikeRate ,   hundred , fifty, fours ,sixes);
+    public IplLeagueDAO(IPLBowlingCSV iplBowlingCSV) {
+        position = iplBowlingCSV.pos;
+        player = iplBowlingCSV.player;
+        matches = iplBowlingCSV.matches;
+        inns = iplBowlingCSV.innings;
+        over = iplBowlingCSV.over;
+        runs = iplBowlingCSV.runs;
+        wickets = iplBowlingCSV.wickets;
+        bbi = iplBowlingCSV.bbi;
+        avg = iplBowlingCSV.average;
+        econ = iplBowlingCSV.econ;
+        strikeRate = iplBowlingCSV.strikeRate;
+        fourWickets = iplBowlingCSV.fourWickets;
+        fiveWickets = iplBowlingCSV.fiveWickets;
     }
 
+    public IPLBattingCSV getIplDto(){
+        return new IPLBattingCSV (position ,
+                player , matches, inns,notOut , runs, highScore , avg, ballFaced,
+                strikeRate,   hundred , fifty, fours ,sixes);
+    }
 
     public int getPosition() {
         return position;
@@ -53,8 +76,8 @@ public class IplLeagueDAO {
         return player;
     }
 
-    public int getMatch() {
-        return match;
+    public int getMatches() {
+        return matches;
     }
 
     public int getInns() {
@@ -101,12 +124,36 @@ public class IplLeagueDAO {
         return sixes;
     }
 
+    public double getOver() {
+        return over;
+    }
+
+    public int getWickets() {
+        return wickets;
+    }
+
+    public int getBbi() {
+        return bbi;
+    }
+
+    public double getEcon() {
+        return econ;
+    }
+
+    public int getFourWickets() {
+        return fourWickets;
+    }
+
+    public int getFiveWickets() {
+        return fiveWickets;
+    }
+
     @Override
     public String toString() {
         return "IplLeagueDAO{" +
                 "position=" + position +
                 ", player='" + player + '\'' +
-                ", match=" + match +
+                ", matches=" + matches +
                 ", inns=" + inns +
                 ", notOut=" + notOut +
                 ", runs=" + runs +
@@ -118,6 +165,12 @@ public class IplLeagueDAO {
                 ", fifty=" + fifty +
                 ", fours=" + fours +
                 ", sixes=" + sixes +
+                ", over=" + over +
+                ", wickets=" + wickets +
+                ", bbi=" + bbi +
+                ", econ=" + econ +
+                ", fourWickets=" + fourWickets +
+                ", fiveWickets=" + fiveWickets +
                 '}';
     }
 }

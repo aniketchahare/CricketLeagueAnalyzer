@@ -89,4 +89,15 @@ public class BowlingTest {
 
         }
     }
+
+    @Test
+    public void givenBowlingCSVFile_WhenSortedOnEconomy_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.ECONOMY);
+            sortedData.forEach(System.out::println);
+            Assert.assertEquals("Ben Cutting", sortedData.get(0).player);
+        } catch (CricketAnalyzerException e){ }
+    }
 }

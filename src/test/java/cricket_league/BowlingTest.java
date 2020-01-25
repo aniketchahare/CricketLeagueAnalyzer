@@ -69,7 +69,7 @@ public class BowlingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
-            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVG);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVG_BOWLER);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {
@@ -119,7 +119,7 @@ public class BowlingTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
-            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVERAGES_STRIKERATE);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BOWLER_AVERAGES_STRIKERATE);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
         } catch (CricketAnalyzerException e) {

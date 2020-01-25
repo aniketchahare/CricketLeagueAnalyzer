@@ -11,7 +11,7 @@ public class IplLeagueDAO {
     public int notOut;
     public int runs;
     public String highScore;
-    public Double avg;
+    public Double batsmanAvg;
     public int ballFaced;
     public Double strikeRate;
     public int hundred;
@@ -19,6 +19,7 @@ public class IplLeagueDAO {
     public int fours;
     public int sixes;
 
+    public Double bowlerAvg;
     public Double over;
     public int wickets;
     public int bbi;
@@ -37,7 +38,7 @@ public class IplLeagueDAO {
         notOut = iplBattingCSV.notOut;
         runs = iplBattingCSV.runs;
         highScore = iplBattingCSV.highScore;
-        avg = iplBattingCSV.average;
+        batsmanAvg = iplBattingCSV.average;
         ballFaced = iplBattingCSV.ballFaced;
         strikeRate = iplBattingCSV.strikeRate;
         hundred = iplBattingCSV.hundred;
@@ -55,7 +56,7 @@ public class IplLeagueDAO {
         runs = iplBowlingCSV.runs;
         wickets = iplBowlingCSV.wickets;
         bbi = iplBowlingCSV.bbi;
-        avg = iplBowlingCSV.average;
+        bowlerAvg = iplBowlingCSV.average;
         econ = iplBowlingCSV.econ;
         strikeRate = iplBowlingCSV.strikeRate;
         fourWickets = iplBowlingCSV.fourWickets;
@@ -64,7 +65,7 @@ public class IplLeagueDAO {
 
     public IPLBattingCSV getIplDto(){
         return new IPLBattingCSV (position ,
-                player , matches, inns,notOut , runs, highScore , avg, ballFaced,
+                player , matches, inns,notOut , runs, highScore , batsmanAvg, ballFaced,
                 strikeRate,   hundred , fifty, fours ,sixes);
     }
 
@@ -96,8 +97,12 @@ public class IplLeagueDAO {
         return highScore;
     }
 
-    public double getAvg() {
-        return avg;
+    public double getBatsmanAvg() {
+        return batsmanAvg;
+    }
+
+    public double getBowlerAvg() {
+        return bowlerAvg;
     }
 
     public int getBallFaced() {
@@ -158,7 +163,7 @@ public class IplLeagueDAO {
                 ", notOut=" + notOut +
                 ", runs=" + runs +
                 ", highScore='" + highScore + '\'' +
-                ", avg=" + avg +
+                ", batsmanAvg=" + batsmanAvg +
                 ", ballFaced=" + ballFaced +
                 ", strikeRate=" + strikeRate +
                 ", hundred=" + hundred +

@@ -10,6 +10,8 @@ import java.util.List;
 
 public class BowlingTest {
 
+    private static final String BATTING_CSV_FILE_PATH = "/home/admin123/Documents/CricketLeagueAnalyzer/src/test/resources/IPL2019FactsheetMostRuns.csv";
+
     private static final String BOWLING_CSV_FILE_PATH = "./src/test/resources/IPL2019FactsheetMostWkts.csv";
     private static final String WRONG_BOWLING_CSV_FILE_PATH = "/home/admin123/Documents/CricketLeagueAnalyzer/src/main/resources/IPL2019FactsheetMostWkts.csv";
     private static final String WRONG_BOWLING_CSV_FILE_TYPE = "/home/admin123/Documents/CricketLeagueAnalyzer/src/test/resources/IPL2019FactsheetMostWkts.txt";
@@ -19,7 +21,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_ShouldReturnCSVFileData() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            int numOfRecords = cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            int numOfRecords = cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             Assert.assertEquals(99, numOfRecords);
         } catch (CricketAnalyzerException e){
             e.printStackTrace();
@@ -32,9 +34,9 @@ public class BowlingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(CricketAnalyzerException.class);
-            cricketAnalyzer.loadBowlingDataFile(WRONG_BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, WRONG_BOWLING_CSV_FILE_PATH);
         } catch (CricketAnalyzerException e){
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BOWLING_FILE_PROBLEM, e.type);
         }
     }
 
@@ -44,9 +46,9 @@ public class BowlingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(CricketAnalyzerException.class);
-            cricketAnalyzer.loadBowlingDataFile(WRONG_BOWLING_CSV_FILE_TYPE);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, WRONG_BOWLING_CSV_FILE_TYPE);
         } catch (CricketAnalyzerException e){
-            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM, e.type);
+            Assert.assertEquals(CricketAnalyzerException.ExceptionType.IPL_BOWLING_FILE_PROBLEM, e.type);
         }
     }
 
@@ -56,7 +58,7 @@ public class BowlingTest {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(CricketAnalyzerException.class);
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_WITH_WRONG_DELIMETER);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_WITH_WRONG_DELIMETER);
         } catch (CricketAnalyzerException e) {
             Assert.assertEquals(CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA, e.type);
         }
@@ -68,7 +70,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_WhenSortedOnAvg_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVG_BOWLER);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
@@ -81,7 +83,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_WhenSortedOnSR_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
@@ -94,7 +96,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_WhenSortedOnEconomy_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.ECONOMY);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Ben Cutting", sortedData.get(0).player);
@@ -105,7 +107,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_WhenSortedOnStrikeRate_With5wAnd4w_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE_FIVE_FOUR_WKTS);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
@@ -118,7 +120,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_WhenSortedOnAverages_WithStrikeRate_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BOWLER_AVERAGES_STRIKERATE);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
@@ -131,7 +133,7 @@ public class BowlingTest {
     public void givenBowlingCSVFile_WhenSortedOnMaxWkts_WithBestAvg_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-            cricketAnalyzer.loadBowlingDataFile(BOWLING_CSV_FILE_PATH);
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.WICKETS_AVERAGES);
 //            sortedData.forEach(System.out::println);
             Assert.assertEquals("Imran Tahir", sortedData.get(0).player);
@@ -139,4 +141,18 @@ public class BowlingTest {
 
         }
     }
+
+//    @Test
+//    public void givenBowlingCSVFile_WhenSortedOn_BattingAndBowlingAvgs_ShouldReturnSortedResult() {
+//        try {
+//            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+//            cricketAnalyzer.loadDataFile(BATTING_CSV_FILE_PATH);
+//            cricketAnalyzer.loadFileData(BOWLING_CSV_FILE_PATH);
+//            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BATTING_BOWLING_AVERAGE);
+//            System.out.println(sortedData.size());
+////            Assert.assertEquals("abc", sortedData.get(0).player);
+//        }  catch (CricketAnalyzerException e){
+//
+//        }
+//    }
 }

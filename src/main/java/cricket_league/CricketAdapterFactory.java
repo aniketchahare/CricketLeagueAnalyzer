@@ -23,13 +23,14 @@ public class CricketAdapterFactory {
                 battingList.forEach(batsman -> {
                     if ( batsman.playerName.equals(player.playerName)){
                         batsman.bowlerAvg = player.bowlerAvg;
+                        batsman.wickets = player.wickets;
                         playerList.add(batsman);
                     }
                 });
             });
+            return playerList;
         }
-        return playerList;
 
-//        throw new CricketAnalyzerException("Unknown Data", CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA);
+        throw new CricketAnalyzerException("Unknown Data", CricketAnalyzerException.ExceptionType.INCORRECT_FILE_DATA);
     }
 }

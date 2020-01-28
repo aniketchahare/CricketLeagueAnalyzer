@@ -15,7 +15,8 @@ public enum SortMode {
     ECONOMY(new SortByEconomy()),
     STRIKERATE_FIVE_FOUR_WKTS(new SortByStrikeRateFiveFourWkts()),
     WICKETS_AVERAGES(new SortByWktsAvgs()),
-    BATTING_BOWLING_AVERAGE(new SortByBattingBowlingAvg());
+    BATTING_BOWLING_AVERAGE(new SortByBattingBowlingAvg()),
+    MOST_RUNS_WKTS(new SortByRunsWickets());
 
     public Sorting sortMode;
 

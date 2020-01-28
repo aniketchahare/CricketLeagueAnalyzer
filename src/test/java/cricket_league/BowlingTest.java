@@ -143,11 +143,26 @@ public class BowlingTest {
     }
 
     @Test
-    public void givenBowlingCSVFile_WhenSortedOn_BattingAndBowlingAvgs_ShouldReturnSortedResult() {
+    public void givenBattingBowlingCSVFile_WhenSortedOn_BattingAndBowlingAvgs_ShouldReturnSortedResult() {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.INNING, BATTING_CSV_FILE_PATH, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BATTING_BOWLING_AVERAGE);
+//            sortedData.forEach(System.out::println);
+//            System.out.println(sortedData.size());
+            Assert.assertEquals(49, sortedData.size());
+        }  catch (CricketAnalyzerException e){
+
+        }
+    }
+
+    @Test
+    public void givenBattingBowlingCSVFile_WhenSortedOn_MostRunsAndWkts_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.INNING, BATTING_CSV_FILE_PATH, BOWLING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.MOST_RUNS_WKTS);
+//            sortedData.forEach(System.out::println);
 //            System.out.println(sortedData.size());
             Assert.assertEquals(49, sortedData.size());
         }  catch (CricketAnalyzerException e){

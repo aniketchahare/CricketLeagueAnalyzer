@@ -17,9 +17,9 @@ import java.util.stream.StreamSupport;
 public class IPLBowlingAdapter {
     public List<IplLeagueDAO> csvList = new ArrayList<>();
 
-    public List<IplLeagueDAO> loadFileData(String[] csvFilePath) throws CricketAnalyzerException {
+    public List<IplLeagueDAO> loadFileData(String csvFilePath) throws CricketAnalyzerException {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(csvFilePath[0]));
+            Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<IPLBowlingCSV> csvFileIterator = csvBuilder.getCSVFileIterator(reader, IPLBowlingCSV.class);
             Iterable<IPLBowlingCSV> iterable = () -> csvFileIterator;

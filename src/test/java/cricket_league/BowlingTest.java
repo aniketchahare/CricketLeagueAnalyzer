@@ -73,7 +73,7 @@ public class BowlingTest {
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.AVG_BOWLER);
 //            sortedData.forEach(System.out::println);
-            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).playerName);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -86,7 +86,7 @@ public class BowlingTest {
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE);
 //            sortedData.forEach(System.out::println);
-            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).playerName);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -99,7 +99,7 @@ public class BowlingTest {
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.ECONOMY);
 //            sortedData.forEach(System.out::println);
-            Assert.assertEquals("Ben Cutting", sortedData.get(0).player);
+            Assert.assertEquals("Ben Cutting", sortedData.get(0).playerName);
         } catch (CricketAnalyzerException e){ }
     }
 
@@ -110,7 +110,7 @@ public class BowlingTest {
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.STRIKERATE_FIVE_FOUR_WKTS);
 //            sortedData.forEach(System.out::println);
-            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).playerName);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -123,7 +123,7 @@ public class BowlingTest {
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BOWLER_AVERAGES_STRIKERATE);
 //            sortedData.forEach(System.out::println);
-            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).player);
+            Assert.assertEquals("Krishnappa Gowtham", sortedData.get(0).playerName);
         } catch (CricketAnalyzerException e) {
 
         }
@@ -136,23 +136,22 @@ public class BowlingTest {
             cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.BOWLING, BOWLING_CSV_FILE_PATH);
             List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.WICKETS_AVERAGES);
 //            sortedData.forEach(System.out::println);
-            Assert.assertEquals("Imran Tahir", sortedData.get(0).player);
+            Assert.assertEquals("Imran Tahir", sortedData.get(0).playerName);
         } catch (CricketAnalyzerException e) {
 
         }
     }
 
-//    @Test
-//    public void givenBowlingCSVFile_WhenSortedOn_BattingAndBowlingAvgs_ShouldReturnSortedResult() {
-//        try {
-//            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
-//            cricketAnalyzer.loadDataFile(BATTING_CSV_FILE_PATH);
-//            cricketAnalyzer.loadFileData(BOWLING_CSV_FILE_PATH);
-//            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BATTING_BOWLING_AVERAGE);
+    @Test
+    public void givenBowlingCSVFile_WhenSortedOn_BattingAndBowlingAvgs_ShouldReturnSortedResult() {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadFileData(CricketAnalyzer.CSVFileType.INNING, BATTING_CSV_FILE_PATH, BOWLING_CSV_FILE_PATH);
+            List<IplLeagueDAO> sortedData = cricketAnalyzer.getSortedData(SortMode.BATTING_BOWLING_AVERAGE);
 //            System.out.println(sortedData.size());
-////            Assert.assertEquals("abc", sortedData.get(0).player);
-//        }  catch (CricketAnalyzerException e){
-//
-//        }
-//    }
+            Assert.assertEquals(49, sortedData.size());
+        }  catch (CricketAnalyzerException e){
+
+        }
+    }
 }

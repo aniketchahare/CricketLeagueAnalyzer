@@ -5,7 +5,7 @@ import cricket_league.IPLBowlingCSV;
 
 public class IplLeagueDAO {
     public int position;
-    public String player;
+    public String playerName;
     public int matches;
     public int inns;
     public int notOut;
@@ -32,7 +32,7 @@ public class IplLeagueDAO {
 
     public IplLeagueDAO(IPLBattingCSV iplBattingCSV) {
         position = iplBattingCSV.pos;
-        player = iplBattingCSV.player;
+        playerName = iplBattingCSV.player;
         matches = iplBattingCSV.match;
         inns = iplBattingCSV.innings;
         notOut = iplBattingCSV.notOut;
@@ -49,7 +49,7 @@ public class IplLeagueDAO {
 
     public IplLeagueDAO(IPLBowlingCSV iplBowlingCSV) {
         position = iplBowlingCSV.pos;
-        player = iplBowlingCSV.player;
+        playerName = iplBowlingCSV.player;
         matches = iplBowlingCSV.matches;
         inns = iplBowlingCSV.innings;
         over = iplBowlingCSV.over;
@@ -65,7 +65,7 @@ public class IplLeagueDAO {
 
     public IPLBattingCSV getIplDto(){
         return new IPLBattingCSV (position ,
-                player , matches, inns,notOut , runs, highScore , batsmanAvg, ballFaced,
+                playerName, matches, inns,notOut , runs, highScore , batsmanAvg, ballFaced,
                 strikeRate,   hundred , fifty, fours ,sixes);
     }
 
@@ -73,8 +73,8 @@ public class IplLeagueDAO {
         return position;
     }
 
-    public String getPlayer() {
-        return player;
+    public String getPlayerName() {
+        return playerName;
     }
 
     public int getMatches() {
@@ -157,7 +157,7 @@ public class IplLeagueDAO {
     public String toString() {
         return "IplLeagueDAO{" +
                 "position=" + position +
-                ", player='" + player + '\'' +
+                ", playerName='" + playerName + '\'' +
                 ", matches=" + matches +
                 ", inns=" + inns +
                 ", notOut=" + notOut +

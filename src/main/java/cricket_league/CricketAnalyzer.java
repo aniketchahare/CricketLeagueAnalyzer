@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CricketAnalyzer {
-    public enum CSVFileType { BATTING, BOWLING }
+    public enum CSVFileType { BATTING, BOWLING, INNING }
     public List<IplLeagueDAO> csvList = new ArrayList<>();
 
     public int loadFileData(CSVFileType csvFileType, String... csvFilePath) throws CricketAnalyzerException {

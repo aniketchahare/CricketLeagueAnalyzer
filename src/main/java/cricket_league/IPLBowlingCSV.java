@@ -67,7 +67,7 @@ public class IPLBowlingCSV {
     public String toString() {
         return "IPLBowlingCSV{" +
                 "pos=" + pos +
-                ", player='" + player + '\'' +
+                ", playerName='" + player + '\'' +
                 ", matches=" + matches +
                 ", innings=" + innings +
                 ", over=" + over +

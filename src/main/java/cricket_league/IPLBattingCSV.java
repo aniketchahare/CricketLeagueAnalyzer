@@ -70,7 +70,7 @@ public class IPLBattingCSV {
     public String toString() {
         return "IPLBattingCSV{" +
                 "pos=" + pos +
-                ", player='" + player + '\'' +
+                ", playerName='" + player + '\'' +
                 ", matches=" + match +
                 ", innings=" + innings +
                 ", notOut=" + notOut +

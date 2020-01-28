@@ -8,7 +8,7 @@ import java.util.List;
 public class SortByBattingBowlingAvg implements Sorting {
     @Override
     public List getSort(List<IplLeagueDAO> list) {
-        list.sort(Comparator.comparing(IplLeagueDAO::getBatsmanAvg).thenComparing(IplLeagueDAO::getStrikeRate).reversed());
+        list.sort(Comparator.comparing(IplLeagueDAO::getBatsmanAvg).thenComparing(IplLeagueDAO::getBowlerAvg).reversed());
         return list;
     }
 }
